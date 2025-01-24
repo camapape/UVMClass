@@ -1,0 +1,34 @@
+<empleados>
+  <empleado>
+    <id>1</id>
+    <nombre>Luis</nombre>
+    <apellido>Murillo</apellido>
+    <edad>38</edad>
+    <sexo>M</sexo>
+    <cargo>Gerente</cargo>
+  </empleado>
+  <empleado>
+    <id>2</id>
+    <nombre>Alberto</nombre>
+    <apellido>Lara</apellido>
+    <edad>35</edad>
+    <sexo>M</sexo>
+    <cargo>Jefe de Ventas</cargo>
+  </empleado>
+  <empleado>
+    <id>3</id>
+    <nombre>Carolina</nombre>
+    <apellido>Mireles</apellido>
+    <edad>35</edad>
+    <sexo>M</sexo>
+    <cargo>Jefe de Mercadotecnia</cargo>
+  </empleado>
+  <empleado>
+    <id>4</id>
+    <nombre>Luisa</nombre>
+    <apellido>Saltillo</apellido>
+    <edad>39</edad>
+    <sexo>M</sexo>
+    <cargo>Cajero</cargo>
+  </empleado>
+</empleados>
