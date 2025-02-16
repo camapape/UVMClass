@@ -130,3 +130,90 @@ BEGIN
     DBMS_OUTPUT.PUT_LINE('Créditos: ' || asig.getCreditos);
 END;
 /
+
+-- Crear tabla para Persona (Tabla base para herencia)
+CREATE TABLE Personas OF Persona 
+(
+    CONSTRAINT pk_personas PRIMARY KEY (DNI_P)
+);
+
+-- Crear tabla para Profesor, heredando de Persona
+CREATE TABLE Profesores OF Profesor 
+(
+    CONSTRAINT pk_profesores PRIMARY KEY (DNI_P),
+    CONSTRAINT fk_profesores_personas FOREIGN KEY (DNI_P) REFERENCES Personas(DNI_P)
+);
+
+-- Crear tabla para Alumno, heredando de Persona
+CREATE TABLE Alumnos OF Alumno 
+(
+    CONSTRAINT pk_alumnos PRIMARY KEY (DNI_P),
+    CONSTRAINT fk_alumnos_personas FOREIGN KEY (DNI_P) REFERENCES Personas(DNI_P)
+);
+
+-- Crear tabla para Asignatura
+CREATE TABLE Asignaturas OF Asignatura 
+(
+    CONSTRAINT pk_asignaturas PRIMARY KEY (Codigo_A)
+);
+
+-- Crear la tabla Rel_Alumno_Asignatura
+CREATE TABLE Rel_Alumno_Asignatura 
+(
+    ID_Rel NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY, -- Identificador único
+    Alumno Alumno,       -- Tipo objeto Alumno
+    Asignatura Asignatura, -- Tipo objeto Asignatura
+    Profesor Profesor    -- Tipo objeto Profesor
+);
+
+INSERT INTO Profesores (DNI_P, NCuenta_Pr, Nombre_P, Especialidad) 
+VALUES ('11111111A', 'P00123', 'Pedro Ramírez', 'Matemáticas');
+
+INSERT INTO Profesores (DNI_P, NCuenta_Pr, Nombre_P, Especialidad) 
+VALUES ('22222222B', 'P00456', 'Laura Fernández', 'Física');
+
+INSERT INTO Profesores (DNI_P, NCuenta_Pr, Nombre_P, Especialidad) 
+VALUES ('33333333C', 'P00789', 'Javier Morales', 'Programación');
+
+INSERT INTO Profesores (DNI_P, NCuenta_Pr, Nombre_P, Especialidad) 
+VALUES ('44444444D', 'P01234', 'Andrea López', 'Historia');
+
+INSERT INTO Profesores (DNI_P, NCuenta_Pr, Nombre_P, Especialidad) 
+VALUES ('55555555E', 'P05678', 'Roberto Torres', 'Química');
+
+
+-- Confirmar los cambios
+COMMIT;
+INSERT INTO Personas (DNI_P, Nombre_P) VALUES ('11111111A', 'Pedro Ramírez');
+INSERT INTO Personas (DNI_P, Nombre_P) VALUES ('22222222B', 'Laura Fernández');
+INSERT INTO Personas (DNI_P, Nombre_P) VALUES ('33333333C', 'Javier Morales');
+INSERT INTO Personas (DNI_P, Nombre_P) VALUES ('44444444D', 'Andrea López');
+INSERT INTO Personas (DNI_P, Nombre_P) VALUES ('55555555E', 'Roberto Torres');
+
+-- Confirmar los cambios
+COMMIT;
+
+INSERT INTO Profesores (DNI_P, Nombre_P, NCuenta_Pr, Especialidad) 
+VALUES ('11111111A', 'Pedro Ramírez', 'P00123', 'Matemáticas');
+
+INSERT INTO Profesores (DNI_P, Nombre_P, NCuenta_Pr, Especialidad) 
+VALUES ('22222222B', 'Laura Fernández', 'P00456', 'Física');
+
+INSERT INTO Profesores (DNI_P, Nombre_P, NCuenta_Pr, Especialidad) 
+VALUES ('33333333C', 'Javier Morales', 'P00789', 'Programación');
+
+INSERT INTO Profesores (DNI_P, Nombre_P, NCuenta_Pr, Especialidad) 
+VALUES ('44444444D', 'Andrea López', 'P01234', 'Historia');
+
+INSERT INTO Profesores (DNI_P, Nombre_P, NCuenta_Pr, Especialidad) 
+VALUES ('55555555E', 'Roberto Torres', 'P05678', 'Química');
+
+-- Confirmar los cambios
+COMMIT;
+
+SELECT * FROM Personas;
+SELECT * FROM Alumnos;
+SELECT * FROM Profesores;
+SELECT * FROM Asignaturas;
+SELECT * FROM Rel_Alumno_Asignatura;
+
