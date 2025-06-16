@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tablero de Visualización - Pobreza en México (2008-2018)</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; background-color: #f4f4f4; }
+    h1 { text-align: center; color: #333; }
+    .dashboard { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 40px; }
+    .chart-container { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+    canvas { max-width: 100%; height: auto; }
+  </style>
+</head>
+<body>
+  <h1>Tablero de Gráficos: 10 Años de Pobreza en México</h1>
+  <div class="dashboard">
+    <div class="chart-container">
+      <h3>1. Personas en situación de pobreza (millones)</h3>
+      <canvas id="chart1"></canvas>
+    </div>
+    <div class="chart-container">
+      <h3>2. Porcentaje de pobreza total y extrema</h3>
+      <canvas id="chart2"></canvas>
+    </div>
+    <div class="chart-container">
+      <h3>3. Carencias sociales (2008 vs. 2018)</h3>
+      <canvas id="chart3"></canvas>
+    </div>
+    <div class="chart-container">
+      <h3>4. Pobreza por entidad federativa</h3>
+      <canvas id="chart4"></canvas>
+    </div>
+    <div class="chart-container">
+      <h3>5. Pobreza en adultos mayores</h3>
+      <canvas id="chart5"></canvas>
+    </div>
+  </div>
+
+  <script>
+    const years = [2008, 2010, 2012, 2014, 2016, 2018];
+
+    new Chart(document.getElementById("chart1"), {
+      type: 'line',
+      data: {
+        labels: years,
+        datasets: [{
+          label: "Millones de personas",
+          data: [49.5, 52.8, 53.3, 55.3, 53.4, 52.4],
+          borderColor: "#3e95cd",
+          fill: false
+        }]
+      }
+    });
+
+    new Chart(document.getElementById("chart2"), {
+      type: 'line',
+      data: {
+        labels: years,
+        datasets: [
+          {
+            label: "Pobreza total (%)",
+            data: [44.4, 46.1, 45.5, 46.2, 43.6, 41.9],
+            borderColor: "#8e5ea2",
+            fill: false
+          },
+          {
+            label: "Pobreza extrema (%)",
+            data: [11.0, 11.3, 9.8, 9.5, 7.9, 7.4],
+            borderColor: "#c45850",
+            fill: false
+          }
+        ]
+      }
+    });
+
+    new Chart(document.getElementById("chart3"), {
+      type: 'bar',
+      data: {
+        labels: ["Rezago educativo", "Salud", "Seguridad social", "Calidad vivienda", "Servicios básicos", "Alimentación"],
+        datasets: [
+          {
+            label: "2008 (%)",
+            backgroundColor: "#3e95cd",
+            data: [21.9, 38.4, 65.0, 17.7, 22.9, 21.7]
+          },
+          {
+            label: "2018 (%)",
+            backgroundColor: "#8e5ea2",
+            data: [16.9, 16.2, 57.3, 11.1, 19.8, 20.4]
+          }
+        ]
+      }
+    });
+
+    new Chart(document.getElementById("chart4"), {
+      type: 'bar',
+      data: {
+        labels: ["Chiapas", "Oaxaca", "Guerrero", "Veracruz", "Puebla"],
+        datasets: [
+          {
+            label: "2008 (%)",
+            backgroundColor: "#3cba9f",
+            data: [77.0, 68.3, 68.4, 51.2, 64.5]
+          },
+          {
+            label: "2018 (%)",
+            backgroundColor: "#e8c3b9",
+            data: [76.4, 66.4, 66.5, 61.8, 58.9]
+          }
+        ]
+      }
+    });
+
+    new Chart(document.getElementById("chart5"), {
+      type: 'bar',
+      data: {
+        labels: ["Pobreza total", "Pobreza extrema", "Vulnerabilidad ingreso"],
+        datasets: [
+          {
+            label: "2008 (%)",
+            backgroundColor: "#ffa07a",
+            data: [42.7, 12.1, 4.6]
+          },
+          {
+            label: "2018 (%)",
+            backgroundColor: "#20b2aa",
+            data: [39.1, 7.0, 8.0]
+          }
+        ]
+      }
+    });
+  </script>
+</body>
+</html>

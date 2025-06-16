@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Tablero de Visualización - Pobreza en México (2008–2018)</title>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; background: #f4f4f4; }
+    h1 { text-align: center; color: #333; }
+    .dashboard { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 30px; }
+    .chart-container { background: #fff; padding: 15px; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); }
+    .chart-container h3 { margin-top: 0; }
+  </style>
+  <script>
+    google.charts.load('current', {packages: ['corechart', 'bar']});
+    google.charts.setOnLoadCallback(drawAll);
+
+    function drawAll() {
+      drawChart1();
+      drawChart2();
+      drawChart3();
+      drawChart4();
+      drawChart5();
+    }
+
+    function drawChart1() {
+      const data = google.visualization.arrayToDataTable([
+        ['Año', 'Millones de personas'],
+        [2008, 49.5], [2010, 52.8], [2012, 53.3],
+        [2014, 55.3], [2016, 53.4], [2018, 52.4]
+      ]);
+      const options = {
+        title: 'Personas en situación de pobreza',
+        curveType: 'function',
+        legend: { position: 'bottom' }
+      };
+      new google.visualization.LineChart(document.getElementById('chart1')).draw(data, options);
+    }
+
+    function drawChart2() {
+      const data = google.visualization.arrayToDataTable([
+        ['Año', 'Pobreza total', 'Pobreza extrema'],
+        [2008, 44.4, 11.0], [2010, 46.1, 11.3], [2012, 45.5, 9.8],
+        [2014, 46.2, 9.5], [2016, 43.6, 7.9], [2018, 41.9, 7.4]
+      ]);
+      const options = {
+        title: 'Porcentaje de pobreza total y extrema',
+        curveType: 'function',
+        legend: { position: 'bottom' }
+      };
+      new google.visualization.LineChart(document.getElementById('chart2')).draw(data, options);
+    }
+
+    function drawChart3() {
+      const data = google.visualization.arrayToDataTable([
+        ['Carencia', '2008', '2018'],
+        ['Rezago educativo', 21.9, 16.9],
+        ['Salud', 38.4, 16.2],
+        ['Seguridad social', 65.0, 57.3],
+        ['Calidad vivienda', 17.7, 11.1],
+        ['Servicios básicos', 22.9, 19.8],
+        ['Alimentación', 21.7, 20.4]
+      ]);
+      const options = {
+        title: 'Carencias sociales (2008 vs 2018)',
+        bars: 'vertical',
+        series: { 0: { color: '#3e95cd' }, 1: { color: '#8e5ea2' } }
+      };
+      new google.visualization.ColumnChart(document.getElementById('chart3')).draw(data, options);
+    }
+
+    function drawChart4() {
+      const data = google.visualization.arrayToDataTable([
+        ['Entidad', '2008', '2018'],
+        ['Chiapas', 77.0, 76.4],
+        ['Oaxaca', 68.3, 66.4],
+        ['Guerrero', 68.4, 66.5],
+        ['Veracruz', 51.2, 61.8],
+        ['Puebla', 64.5, 58.9]
+      ]);
+      const options = {
+        title: 'Pobreza por entidad federativa',
+        bars: 'horizontal',
+        series: { 0: { color: '#3cba9f' }, 1: { color: '#e8c3b9' } }
+      };
+      new google.visualization.BarChart(document.getElementById('chart4')).draw(data, options);
+    }
+
+    function drawChart5() {
+      const data = google.visualization.arrayToDataTable([
+        ['Condición', '2008', '2018'],
+        ['Pobreza total', 42.7, 39.1],
+        ['Pobreza extrema', 12.1, 7.0],
+        ['Vulnerabilidad ingreso', 4.6, 8.0]
+      ]);
+      const options = {
+        title: 'Pobreza en adultos mayores',
+        bars: 'vertical',
+        series: { 0: { color: '#ffa07a' }, 1: { color: '#20b2aa' } }
+      };
+      new google.visualization.ColumnChart(document.getElementById('chart5')).draw(data, options);
+    }
+  </script>
+</head>
+<body>
+  <h1>Tablero de Gráficos: Pobreza en México (2008–2018)</h1>
+  <div class="dashboard">
+    <div class="chart-container"><h3>1. Personas en pobreza (millones)</h3><div id="chart1" style="width:100%; height:300px;"></div></div>
+    <div class="chart-container"><h3>2. % pobreza total y extrema</h3><div id="chart2" style="width:100%; height:300px;"></div></div>
+    <div class="chart-container"><h3>3. Carencias sociales (2008 vs 2018)</h3><div id="chart3" style="width:100%; height:300px;"></div></div>
+    <div class="chart-container"><h3>4. Pobreza por entidad federativa</h3><div id="chart4" style="width:100%; height:300px;"></div></div>
+    <div class="chart-container"><h3>5. Pobreza en adultos mayores</h3><div id="chart5" style="width:100%; height:300px;"></div></div>
+  </div>
+</body>
+</html>
